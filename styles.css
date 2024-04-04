@@ -32,6 +32,12 @@ H1, H2, H3 {
     color: white;
 }
 
-.stButton {
-     color: rgb(14, 13, 13);
+/**
+<<div class="row-widget stButton" data-testid="stButton" style="width: 704px;"><button kind="secondary" data-testid="baseButton-secondary" class="st-emotion-cache-1fuu9ex ef3psqc12"><div data-testid="stMarkdownContainer" class="st-emotion-cache-3ps0xc e1nzilvr5"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prever Preço</font></font></p></div></button></div>
+button kind="secondary" data-testid="baseButton-secondary" class="st-emotion-cache-1fuu9ex ef3psqc12"><div data-testid="stMarkdownContainer" class="st-emotion-cache-3ps0xc e1nzilvr5"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prever Preço</font></font></p></div></button>**/
+
+.stButton > button{
+    background-color: Blue;
+    color: black;
 }
+
