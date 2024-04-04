@@ -17,7 +17,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import LabelEncoder
 
 with open("styles.css") as estilo:
-   st.markdown(f"<style>{estilo.read}</style>", unsafe_allow_html=True)
+   st.markdown(f"<style>{estilo.read()}</style>", unsafe_allow_html=True)
 
 
 
