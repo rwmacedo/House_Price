@@ -16,6 +16,8 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import LabelEncoder
 
+with open("styles.css") as estilo:
+    st.markdown(f"<style>{estilo.read}</style>", unsafe_allow_html=True)
 
 pd.options.mode.chained_assignment = None
 train = pd.read_csv('train.csv')
@@ -65,8 +67,15 @@ categoricas_ordinais2 = ['ExterQual', 'ExterCond', 'BsmtQual', 'BsmtCond', 'Heat
 colunas_numericas = train.drop(columns=categoricas_nominais + categoricas_ordinais1 + categoricas_ordinais2).columns
 df_numericos = train[colunas_numericas]
 
+# Carregando a média e o desvio padrão salvos
+# Carregando os valores salvos
+with open('means.pkl', 'rb') as f:
+    means = pickle.load(f)
 
+with open('stds.pkl', 'rb') as f:
+    stds = pickle.load(f)
 
+#meanSalePrice= means['SalePrice']
 
 
 st.title("House Prices")
@@ -135,7 +144,11 @@ with open('model.pkl', 'rb') as file:
 
 def user_input_features():
     LotArea = st.number_input('Lot Area', value=10000)
+    LotArea = (LotArea-means['LotArea'])/stds['LotArea']
+    
     BedroomAbvGr = st.slider('Number of Bedrooms', 0, 10, 2)
+    BedroomAbvGr = (BedroomAbvGr-means['BedroomAbvGr'])/stds['BedroomAbvGr']
+    
     FullBath = st.slider('Number of Full bathrooms', 0, 10, 1)
     HalfBath = st.slider('Number of Half baths', 0, 10, 1)
     YearRemodAdd = st.slider('Year Remodeled', 1950, 2010, 2010)  # Corrigi o label aqui para refletir o propósito correto
@@ -169,7 +182,16 @@ st.title('Previsão de Preços de Imóveis')
 # Coleta das entradas do usuário
 input_data = user_input_features()
 
+
+
 # Botão para fazer previsão
 if st.button('Prever Preço'):
     prediction = model.predict(input_data)
-    st.success(f'O preço previsto do imóvel é ${prediction[0]:,.2f}')
+    # Suponha que 'prediction_normalized' seja a previsão normalizada que você deseja reverter
+    # E 'column_name' seja o nome da coluna para a qual a previsão foi feita
+    prediction_original = prediction * stds['SalePrice'] + means['SalePrice']
+    st.success(f'O preço previsto do imóvel é ${prediction_original[0]:,.2f}')
+
+
+
+
