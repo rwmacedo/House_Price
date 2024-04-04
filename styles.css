@@ -27,3 +27,11 @@ st.subheader{
 p, ol, ul, dl {
     color: white;
 }
+
+H1, H2, H3 {
+    color: white;
+}
+
+.stButton {
+     color: rgb(14, 13, 13);
+}
