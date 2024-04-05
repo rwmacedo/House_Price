@@ -100,7 +100,7 @@ st.write("Produzido por: Renata Werneck de Macedo", unsafe_allow_html=True)
 st.subheader("Construindo um modelo de pricificação de imóveis")
 st.write("Objetivos: Construir um modelo para prever o preço de casas utilizando a base de dasdos disponível em https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data ")
 
-st.markdown("Introdução: Neste trabalho foi utilizado técnicas de rede neurais para prever o preço das casas através da base de dados house_prices. No campo da inteligência artificial, as redes neurais vêm desempenhando um papel fundamental na resolução de problemas complexos, tendo a vantagem de aprendizagem de padrões complexos e de lidar com relações não lineares.")
+st.markdown("Introdução: Neste trabalho foram utilizadas técnicas de redes neurais para prever o preço das casas através da base de dados house_prices do Kaggle. No campo da inteligência artificial, as redes neurais vêm desempenhando um papel fundamental na resolução de problemas complexos, tendo a vantagem de aprendizagem de padrões complexos e de lidar com relações não lineares.")
 st.markdown("A determinação do preço das casas é influenciada por uma série de fatores que refletem tanto as características físicas da propriedade quanto o contexto do mercado imobiliário. ")
 st.markdown("A localização Geográfica (proximidade de centros urbanos, de escolas, acessibilidade a serviços e comodidades), tamanho e Layout da Casa (área construída, número de quartos, banheiros e andares), estado de conservação, idade da propriedade, possuir ou não piscina, jardins, varandas, garagem, e outros recursos especiais e a qualidade dos acabamentos influenciam o preço das propriedades." )
 st.markdown("Além das características do imóvel, a dinâmica do mercado imobiliário também pode influenciar no preço, as condições do Mercado Imobiliário ( oferta e demanda no mercado imobiliário local), tendências econômicas, como taxas de juros, inflação e condições gerais do mercado imobiliário, podem impactar os preços.")
@@ -137,7 +137,7 @@ def plot_correlation_matrix(df, columns):
         colorscale='Blues'
     )
     figure.update_layout(
-        title='Correlation Matrix',
+        title='Matriz de Correlação',
         xaxis=dict(tickmode='linear'),
         yaxis=dict(tickmode='linear')
     )
@@ -145,7 +145,7 @@ def plot_correlation_matrix(df, columns):
 
 
 if __name__ == "__main__":
-    st.title('Correlation Matrix with Plotly')
+    st.title('Matriz de Correlação')
     figure = plot_correlation_matrix(train, colunas_numericas)
     st.plotly_chart(figure)
 
@@ -155,7 +155,7 @@ if __name__ == "__main__":
 
 st.title('Modelo')
 st.subheader("Hiper-Parâmetros")
-st.markdown("O modelo usado foi uma Rede Neral (multilayer perceptron) com os hiper-parâmetros: activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (50, 50), 'learning_rate': 'adaptive', 'solver': 'adam'")
+st.markdown("O modelo usado foi uma Rede Neral Multilayer Perceptron (MLP) com os hiper-parâmetros: activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (50, 50), 'learning_rate': 'adaptive', 'solver': 'adam'")
 
 st.markdown(" O R² do modelo no conjunto de teste: 0.84 e o R² ajustado foi: 0.83")
 
