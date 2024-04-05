@@ -133,42 +133,44 @@ if __name__ == "__main__":
     figure = plot_correlation_matrix(train, colunas_numericas)
     st.plotly_chart(figure)
 
-st.markdown("Pré-Processamento: ")
-
-
 
 
 
 
 st.title('Modelo')
+st.subheader("Hiper-Parâmetros")
+st.markdown("O modelo usado foi uma Rede Neral (multilayer perceptron) com os hiper-parâmetros: activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (50, 50), 'learning_rate': 'adaptive', 'solver': 'adam'")
+
+st.markdown(" O R² do modelo no conjunto de teste: 0.84 e o R² ajustado foi: 0.83")
+
 with open('model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 def user_input_features():
-    LotArea = st.number_input('Lot Area', value=10000)
+    LotArea = st.number_input('Tamanho do lote em pés quadrados', value=10000)
     LotArea = (LotArea-means['LotArea'])/stds['LotArea']
     
-    BedroomAbvGr = st.slider('Number of Bedrooms', 0, 10, 2)
+    BedroomAbvGr = st.slider('Número de quartos', 0, 10, 2)
     BedroomAbvGr = (BedroomAbvGr-means['BedroomAbvGr'])/stds['BedroomAbvGr']
     
-    FullBath = st.slider('Number of Full bathrooms', 0, 10, 1)
-    HalfBath = st.slider('Number of Half baths', 0, 10, 1)
-    YearRemodAdd = st.slider('Year Remodeled', 1950, 2010, 2010)  # Corrigi o label aqui para refletir o propósito correto
-    GarageArea = st.number_input ('Garage Area', value=500)  # Corrigi o label e o valor default
-    Fireplaces = st.slider('Number of Fireplaces', 0, 10, 1)
-    TotalBsmtSF = st.number_input ('Total square feet of basement area', value=1000)  # Corrigi o valor default
-    WoodDeckSF = st.number_input ('Wood deck area in square feet', value=100)  # Corrigi o valor default
-    OpenPorchSF = st.number_input ('Open porch area in square feet', value=50)  # Corrigi o valor default
-    EnclosedPorch = st.number_input ('Enclosed porch area in square feet', value=50)  # Corrigi o valor default
-    ScreenPorch = st.number_input ('Screen porch area in square feet', value=50)  # Corrigi o valor default
-    MSSubClass_60 = 1 if st.selectbox('2-STORY 1946 & NEWER?', ['Y', 'N']) == 'Y' else 0
-    LotShape_Reg = 1 if st.selectbox('General shape of property Regular?', ['Y', 'N']) == 'Y' else 0
-    Neighborhood_NoRidge = 1 if st.selectbox('Northridge?', ['Y', 'N']) == 'Y' else 0
-    Neighborhood_NridgHt = 1 if st.selectbox('Northridge Heights?', ['Y', 'N']) == 'Y' else 0
-    Condition1_Norm = 1 if st.selectbox('Proximity to main road or railroad normal?', ['Y', 'N']) == 'Y' else 0
-    HouseStyle_1Story = 1 if st.selectbox('Style of dwelling 1Story?', ['Y', 'N']) == 'Y' else 0
-    GarageFinish_RFn = 1 if st.selectbox('Interior finish of the garage Rough Finished?', ['Y', 'N']) == 'Y' else 0
-    GarageFinish_Unf = 1 if st.selectbox('Interior finish of the garage Unfinished?', ['Y', 'N']) == 'Y' else 0
+    FullBath = st.slider('Número de banheiros', 0, 10, 1)
+    HalfBath = st.slider('Número de lavabos', 0, 10, 1)
+    YearRemodAdd = st.slider('Ano da reforma', 1950, 2010, 2010)  
+    GarageArea = st.number_input ('Tamanho da garagem em pes quadrados', value=500)  
+    Fireplaces = st.slider('Número de lareiras', 0, 10, 1)
+    TotalBsmtSF = st.number_input ('Total de pés quadrados de área do porão', value=0) 
+    WoodDeckSF = st.number_input ('Área do deck de madeira em metros quadrados', value=100)  
+    OpenPorchSF = st.number_input (' Área de varanda aberta em pés quadrados', value=50) 
+    EnclosedPorch = st.number_input ('Área de varanda fechada em pés quadrados', value=50) 
+    ScreenPorch = st.number_input ('Área da varanda com tela em pés quadrados', value=50)  
+    MSSubClass_60 = 1 if st.selectbox('2-STORY 1946 & NEWER?', ['S', 'N']) == 'S' else 0
+    LotShape_Reg = 1 if st.selectbox('Forma geral da propriedade é Regular?', ['S', 'N']) == 'S' else 0
+    Neighborhood_NoRidge = 1 if st.selectbox('Localizada em Northridge?', ['S', 'N']) == 'S' else 0
+    Neighborhood_NridgHt = 1 if st.selectbox('Localizada em Northridge Heights?', ['S', 'N']) == 'S' else 0
+    Condition1_Norm = 1 if st.selectbox('Próxima da estrada principal ou ferrovia?', ['S', 'N']) == 'S' else 0
+    HouseStyle_1Story = 1 if st.selectbox('É um imóvel de 1 andar?', ['S', 'N']) == 'S' else 0
+    GarageFinish_RFn = 1 if st.selectbox('Interior da garagem está em acabamento bruto?', ['S', 'N']) == 'S' else 0
+    GarageFinish_Unf = 1 if st.selectbox('Interior da garagem está em inacabado?', ['S', 'N']) == 'S' else 0
   
     data = [LotArea, BedroomAbvGr, FullBath, HalfBath, YearRemodAdd,
        GarageArea, Fireplaces, TotalBsmtSF, WoodDeckSF, OpenPorchSF,

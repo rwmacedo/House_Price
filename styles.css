@@ -1,5 +1,5 @@
 .stApp > header {
-    background-color: rgb(32, 24, 24);
+    background-color: rgb(10, 10, 10);
 }
 
 .stApp {
@@ -7,7 +7,7 @@
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     overflow: auto;
 /** background: linear-gradient(315deg, #4f2991 3%, #7dc4ff 38%, #36cfcc 68%, #a92ed3 98%); **/
-    background-color: rgb(32, 24, 24);
+    background-color: rgb(10, 10, 10);
     animation: gradient 15s ease infinite;
     background-size: 400% 400%;
     background-attachment: fixed;
@@ -32,12 +32,9 @@ H1, H2, H3 {
     color: white;
 }
 
-/**
-<<div class="row-widget stButton" data-testid="stButton" style="width: 704px;"><button kind="secondary" data-testid="baseButton-secondary" class="st-emotion-cache-1fuu9ex ef3psqc12"><div data-testid="stMarkdownContainer" class="st-emotion-cache-3ps0xc e1nzilvr5"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prever Preço</font></font></p></div></button></div>
-button kind="secondary" data-testid="baseButton-secondary" class="st-emotion-cache-1fuu9ex ef3psqc12"><div data-testid="stMarkdownContainer" class="st-emotion-cache-3ps0xc e1nzilvr5"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prever Preço</font></font></p></div></button>**/
 
 .stButton > button{
-    background-color: Blue;
-    color: black;
+    background-color: green;
+
 }
 
