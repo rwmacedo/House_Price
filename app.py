@@ -4,6 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.figure_factory as ff
 import pickle
+from PIL import Image
+from io import BytesIO
+
+
 # SKLEARN
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -77,10 +81,22 @@ with open('means.pkl', 'rb') as f:
 with open('stds.pkl', 'rb') as f:
     stds = pickle.load(f)
 
-#meanSalePrice= means['SalePrice']
 
 
-st.title("House Prices")
+# Imagem
+imagem = Image.open("casa.jpg")
+# Criação de colunas para a imagem e o texto
+col1, col2 = st.columns([1, 3])
+# Na primeira coluna, adicione a imagem
+with col1:
+    st.image(imagem, width=100)  # Ajuste a largura conforme necessário
+# Na segunda coluna, adicione o texto
+with col2:
+    st.title("House Prices")
+
+
+
+st.write("Produzido por: Renata Werneck de Macedo", unsafe_allow_html=True)
 st.subheader("Construindo um modelo de pricificação de imóveis")
 st.write("Objetivos: Construir um modelo para prever o preço de casas utilizando a base de dasdos disponível em https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data ")
 
