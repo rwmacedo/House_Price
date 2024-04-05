@@ -165,20 +165,29 @@ with open('model.pkl', 'rb') as file:
 def user_input_features():
     LotArea = st.number_input('Tamanho do lote em pés quadrados', value=10000)
     LotArea = (LotArea-means['LotArea'])/stds['LotArea']
-    
     BedroomAbvGr = st.slider('Número de quartos', 0, 10, 2)
     BedroomAbvGr = (BedroomAbvGr-means['BedroomAbvGr'])/stds['BedroomAbvGr']
-    
     FullBath = st.slider('Número de banheiros', 0, 10, 1)
+    FullBath = (FullBath-means['FullBath'])/stds['FullBath']
     HalfBath = st.slider('Número de lavabos', 0, 10, 1)
+    HalfBath = (HalfBath-means['HalfBath'])/stds['HalfBath']
     YearRemodAdd = st.slider('Ano da reforma', 1950, 2010, 2010)  
+    YearRemodAdd = (YearRemodAdd-means['YearRemodAdd'])/stds['YearRemodAdd']
+      
     GarageArea = st.number_input ('Tamanho da garagem em pes quadrados', value=500)  
+    GarageArea = (GarageArea-means['GarageArea'])/stds['GarageArea']
     Fireplaces = st.slider('Número de lareiras', 0, 10, 1)
+    Fireplaces = (Fireplaces-means['Fireplaces'])/stds['Fireplaces']
     TotalBsmtSF = st.number_input ('Total de pés quadrados de área do porão', value=0) 
-    WoodDeckSF = st.number_input ('Área do deck de madeira em metros quadrados', value=100)  
+    TotalBsmtSF = (TotalBsmtSF-means['TotalBsmtSF'])/stds['TotalBsmtSF']
+    WoodDeckSF = st.number_input ('Área do deck de madeira em metros quadrados', value=100) 
+    WoodDeckSF = (WoodDeckSF-means['WoodDeckSF'])/stds['WoodDeckSF']
     OpenPorchSF = st.number_input (' Área de varanda aberta em pés quadrados', value=50) 
+    OpenPorchSF = (OpenPorchSF-means['OpenPorchSF'])/stds['OpenPorchSF']
     EnclosedPorch = st.number_input ('Área de varanda fechada em pés quadrados', value=50) 
+    EnclosedPorch = (EnclosedPorch-means['EnclosedPorch'])/stds['EnclosedPorch']
     ScreenPorch = st.number_input ('Área da varanda com tela em pés quadrados', value=50)  
+    ScreenPorch = (ScreenPorch-means['ScreenPorch'])/stds['ScreenPorch']
     MSSubClass_60 = 1 if st.selectbox('2-STORY 1946 & NEWER?', ['S', 'N']) == 'S' else 0
     LotShape_Reg = 1 if st.selectbox('Forma geral da propriedade é Regular?', ['S', 'N']) == 'S' else 0
     Neighborhood_NoRidge = 1 if st.selectbox('Localizada em Northridge?', ['S', 'N']) == 'S' else 0
